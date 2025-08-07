@@ -1,10 +1,30 @@
 export default class Player extends Phaser.Physics.Matter.Sprite {
 	constructor(data) {
-		let { scene, x, y, texture, frame } = data;
-		
+		let { scene, x, y, texture, frame, fixedRotation } = data;
+		const { Body, Bodies } = Phaser.Physics.Matter.Matter;
+
 		super(scene.matter.world, x, y, texture, frame);
 		this.scene.add.existing(this);
-		
+
+		var playerCollider = Bodies.circle(
+			this.x,
+			this.y,
+			12,
+			{ isSensor: false, label: 'playerCollider' }
+		);
+		var playerSensor = Bodies.circle(
+			this.x,
+			this.y,
+			24,
+			{ isSensor: true, label: 'playerSensor' }
+		);
+		const compoundBody = Body.create({
+			parts: [ playerCollider, playerSensor ],
+			frictionAir: 0.35
+		});
+
+		this.setExistingBody(compoundBody);
+		if (fixedRotation) this.setFixedRotation();
 	}
 
 	static preload(scene) {
