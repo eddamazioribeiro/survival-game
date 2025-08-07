@@ -6,6 +6,7 @@ export default class MainScene extends Phaser.Scene {
 	preload() {
 		console.log('preload');
 		this.load.atlas('townsfolk', 'assets/images/townsfolk.png', 'assets/images/townsfolk_atlas.json');
+		this.load.animation('townsfolk_anim', 'assets/images/townsfolk_anim.json');
 	}
 
 	create() {
@@ -22,8 +23,7 @@ export default class MainScene extends Phaser.Scene {
 	}
 
 	update() {
-		console.log('update');
-
+		this.player.anims.play('townsfolk_idle', true);
 		const speed = 2.5;
 		let playerVelocity = new Phaser.Math.Vector2();
 
