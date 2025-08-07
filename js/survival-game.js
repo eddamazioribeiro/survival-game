@@ -5,7 +5,7 @@ const config = {
 	parent: 'survival-game',
 	width: 512,
 	height: 512,
-	backgroundColor: '#333333',
+	backgroundColor: '#999999',
 	scene: [ 
 		MainScene
 	],
