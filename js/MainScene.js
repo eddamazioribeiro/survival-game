@@ -5,11 +5,14 @@ export default class MainScene extends Phaser.Scene {
 
 	preload() {
 		console.log('preload');
+		this.load.atlas('townsfolk', 'assets/images/townsfolk.png', 'assets/images/townsfolk_atlas.json');
 	}
 
 	create() {
 		console.log('create');
-		this.player = new Phaser.Physics.Matter.Sprite(this.matter.world)
+		this.player = new Phaser.Physics.Matter.Sprite(this.matter.world, 0, 0, 'townsfolk', 'townsfolk_m_idle_1')
+		this.add.existing(this.player);
+
 		this.inputKeys = this.input.keyboard.addKeys({
 			up: Phaser.Input.Keyboard.KeyCodes.W,
 			down: Phaser.Input.Keyboard.KeyCodes.S,
