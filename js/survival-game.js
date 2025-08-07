@@ -1,10 +1,14 @@
+import MainScene from './MainScene.js';
+
 const config = {
 	type: Phaser.AUTO,
 	parent: 'survival-game',
 	width: 512,
 	height: 512,
 	backgroundColor: '#333333',
-	scene: [],
+	scene: [ 
+		MainScene
+	],
 	scale: {
 		zoom: 2,
 	},
