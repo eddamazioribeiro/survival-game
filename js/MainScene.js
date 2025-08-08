@@ -6,12 +6,16 @@ export default class MainScene extends Phaser.Scene {
 	}
 
 	preload() {
-		console.log('preload');
 		Player.preload(this);
+		this.load.image('tiles', 'assets/images/rpg_nature_tileset.png');
+		this.load.tilemapTiledJSON('map', 'assets/images/map.json');
 	}
 
 	create() {
-		console.log('create');
+		const map = this.make.tilemap({ key: 'map' });
+		const tileset = map.addTilesetImage('rpg_nature_tileset', 'tiles', 32, 32, 0, 0);
+		const layer1 = map.createLayer('tile_layer_1', tileset, 0, 0);
+
 		this.player = new Player({
 			scene: this,
 			x: 0,
