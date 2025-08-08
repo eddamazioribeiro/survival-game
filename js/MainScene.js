@@ -15,6 +15,7 @@ export default class MainScene extends Phaser.Scene {
 		const map = this.make.tilemap({ key: 'map' });
 		const tileset = map.addTilesetImage('rpg_nature_tileset', 'tiles', 32, 32, 0, 0);
 		const layer1 = map.createLayer('tile_layer_1', tileset, 0, 0);
+		const layer2 = map.createLayer('tile_layer_2', tileset, 0, 0);
 
 		this.player = new Player({
 			scene: this,
@@ -23,14 +24,6 @@ export default class MainScene extends Phaser.Scene {
 			texture: 'townsfolk',
 			frame: 'townsfolk_m_idle_1',
 			fixedRotation: true
-		});
-		this.npc = new Player({
-			scene: this,
-			x: 100,
-			y: 100, 
-			texture: 'townsfolk',
-			frame: 'townsfolk_m_idle_1',
-			fixedRotation: false
 		});
 		this.player.inputKeys = this.input.keyboard.addKeys({
 			up: Phaser.Input.Keyboard.KeyCodes.W,
