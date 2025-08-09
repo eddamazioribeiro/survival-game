@@ -5,6 +5,11 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 
 		super(scene.matter.world, x, y, texture, frame);
 		this.scene.add.existing(this);
+		// weapon
+		this.spriteWeapon = new Phaser.GameObjects.Sprite(this.scene, 0, 0, 'icons', 162);
+		this.spriteWeapon.setScale(0.8);
+		this.spriteWeapon.setOrigin(0.25, 0.75);
+		this.scene.add.existing(this.spriteWeapon);
 
 		var playerCollider = Bodies.circle(
 			this.x,
@@ -25,11 +30,14 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 
 		this.setExistingBody(compoundBody);
 		if (fixedRotation) this.setFixedRotation();
+
+		this.scene.input.on('pointermove', pointer => this.setFlipX(pointer.worldX < this.x));
 	}
 
 	static preload(scene) {
 		scene.load.atlas('townsfolk', 'assets/images/townsfolk.png', 'assets/images/townsfolk_atlas.json');
 		scene.load.animation('townsfolk_anim', 'assets/images/townsfolk_anim.json');
+		scene.load.spritesheet('icons', 'assets/images/icons.png', { frameWidth: 32, frameHeight: 32 });
 	}
 	
 	get velocity() {
@@ -61,5 +69,20 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		} else {
 			this.anims.play('townsfolk_idle', true);
 		}
+
+		this.spriteWeapon.setPosition(this.x, this.y);
+		this.weaponRotate();
+	}
+
+	weaponRotate() {
+		let pointer = this.scene.input.activePointer;
+
+		if (pointer.isDown) this.weaponRotation += 3;
+		else this.weaponRotation = 0;
+
+		if (this.weaponRotation > 40) this.weaponRotation = 0;
+
+		if (this.flipX) this.spriteWeapon.setAngle(this.weaponRotation - 113);
+		else this.spriteWeapon.setAngle(this.weaponRotation);
 	}
 }
