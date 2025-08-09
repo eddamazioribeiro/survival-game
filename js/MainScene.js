@@ -21,14 +21,7 @@ export default class MainScene extends Phaser.Scene {
 		layer1.setCollisionByProperty({ collides: true });
 		this.matter.world.convertTilemapLayer(layer1)
 
-		let tree = new Phaser.Physics.Matter.Sprite(this.matter.world, 50, 50, 'resources', 'tree');
-		let rock = new Phaser.Physics.Matter.Sprite(this.matter.world, 150, 150, 'resources', 'rock');
-
-		tree.setStatic(true);
-		rock.setStatic(true);
-		
-		this.add.existing(tree);
-		this.add.existing(rock);
+		this.addResources();
 
 		this.player = new Player({
 			scene: this,
@@ -43,6 +36,29 @@ export default class MainScene extends Phaser.Scene {
 			down: Phaser.Input.Keyboard.KeyCodes.S,
 			left: Phaser.Input.Keyboard.KeyCodes.A,
 			right: Phaser.Input.Keyboard.KeyCodes.D,
+		});
+	}
+
+	addResources() {
+		const resources = this.map.getObjectLayer('resources');
+		resources.objects.forEach(resource => {
+			let item = new Phaser.Physics.Matter.Sprite(this.matter.world, resource.x, resource.y, 'resources', resource.type);
+			let yOrigin = resource.properties.find(prop => prop.name === 'yOrigin').value;
+			
+			item.x += item.width/2;
+			item.y -= item.height/2;
+			item.y = item.y + item.height * (yOrigin - 0.5);
+
+			const { Body, Bodies } = Phaser.Physics.Matter.Matter;
+			let circleCollider = Bodies.circle(item.x, item.y, 12, {
+				isSensor: false,
+				label: 'collider'
+			});
+
+			item.setExistingBody(circleCollider);
+			item.setStatic(true);
+			item.setOrigin(0.5, yOrigin);
+			this.add.existing(item);
 		});
 	}
 
