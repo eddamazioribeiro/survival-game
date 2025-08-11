@@ -4,6 +4,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		const { Body, Bodies } = Phaser.Physics.Matter.Matter;
 
 		super(scene.matter.world, x, y, texture, frame);
+		this.touching = [];
 		this.scene.add.existing(this);
 		// weapon
 		this.spriteWeapon = new Phaser.GameObjects.Sprite(this.scene, 0, 0, 'icons', 162);
@@ -30,6 +31,8 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 
 		this.setExistingBody(compoundBody);
 		if (fixedRotation) this.setFixedRotation();
+
+		this.createMiningCollisions(playerSensor);
 
 		this.scene.input.on('pointermove', pointer => this.setFlipX(pointer.worldX < this.x));
 	}
@@ -82,7 +85,27 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 
 		if (this.weaponRotation > 40) this.weaponRotation = 0;
 
-		if (this.flipX) this.spriteWeapon.setAngle(this.weaponRotation - 113);
+		if (this.flipX) this.spriteWeapon.setAngle(-this.weaponRotation - 90);
 		else this.spriteWeapon.setAngle(this.weaponRotation);
+	}
+
+	createMiningCollisions(playerSensor) {
+		this.scene.matterCollision.addOnCollideStart({
+			objectA: [playerSensor],
+			callback: other => {
+				if (other.bodyB.isSensor) return
+				this.touching.push(other.gameObjectB);
+			},
+			context: this.scene,
+		});
+
+		this.scene.matterCollision.addOnCollideEnd({
+			objectA: [playerSensor],
+			callback: other => {
+				const i = this.touching.findIndex(obj => obj.name === other.gameObjectB.name);
+				this.touching.splice(i, 1);
+			},
+			context: this.scene,
+		});
 	}
 }
