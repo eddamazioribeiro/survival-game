@@ -83,7 +83,10 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		if (pointer.isDown) this.weaponRotation += 3;
 		else this.weaponRotation = 0;
 
-		if (this.weaponRotation > 40) this.weaponRotation = 0;
+		if (this.weaponRotation > 40) {
+			this.whackStuff()
+			this.weaponRotation = 0;
+		}
 
 		if (this.flipX) this.spriteWeapon.setAngle(-this.weaponRotation - 90);
 		else this.spriteWeapon.setAngle(this.weaponRotation);
@@ -95,6 +98,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 			callback: other => {
 				if (other.bodyB.isSensor) return
 				this.touching.push(other.gameObjectB);
+				console.log(this.touching, this.touching.length);
 			},
 			context: this.scene,
 		});
@@ -106,6 +110,21 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 				this.touching.splice(i, 1);
 			},
 			context: this.scene,
+		});
+	}
+
+	whackStuff() { 
+		this.touching.filter(obj => obj.hit && !obj.dead);
+		this.touching.forEach(obj => {
+			obj.hit();
+
+			if (obj.dead) {
+				console.log('obj', obj);
+				
+				const i = this.touching.findIndex(o => o.name === obj.name);
+				this.touching.splice(i, 1);
+				obj.destroy();
+			}
 		});
 	}
 }
