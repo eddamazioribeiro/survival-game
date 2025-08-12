@@ -3,7 +3,7 @@ import DropItem from "./DropItem.js";
 export default class Resource extends Phaser.Physics.Matter.Sprite {
 	static preload(scene) {
 		scene.load.atlas('resources', 'assets/images/resources.png', 'assets/images/resources_atlas.json');
-		scene.load.audio('tree', 'assets/audio/wood.ogg');
+		scene.load.audio('tree', 'assets/audio/tree.mp3');
 		scene.load.audio('bush', 'assets/audio/bush.mp3');
 		scene.load.audio('rock', 'assets/audio/rock.mp3');
 		scene.load.audio('pickup_item', 'assets/audio/pickup_item.mp3');
