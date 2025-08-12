@@ -1,4 +1,11 @@
 export default class Player extends Phaser.Physics.Matter.Sprite {
+		static preload(scene) {
+		scene.load.atlas('townsfolk', 'assets/images/townsfolk.png', 'assets/images/townsfolk_atlas.json');
+		scene.load.animation('townsfolk_anim', 'assets/images/townsfolk_anim.json');
+		scene.load.spritesheet('icons', 'assets/images/icons.png', { frameWidth: 32, frameHeight: 32 });
+		scene.load.audio('swish', 'assets/audio/swish_weapon.mp3');
+	}
+
 	constructor(data) {
 		let { scene, x, y, texture, frame, fixedRotation } = data;
 		const { Body, Bodies } = Phaser.Physics.Matter.Matter;
@@ -11,6 +18,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		this.spriteWeapon.setScale(0.8);
 		this.spriteWeapon.setOrigin(0.25, 0.75);
 		this.scene.add.existing(this.spriteWeapon);
+		this.sound = this.scene.sound.add('swish');
 
 		var playerCollider = Bodies.circle(
 			this.x,
@@ -35,12 +43,6 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		this.createMiningCollisions(playerSensor);
 
 		this.scene.input.on('pointermove', pointer => this.setFlipX(pointer.worldX < this.x));
-	}
-
-	static preload(scene) {
-		scene.load.atlas('townsfolk', 'assets/images/townsfolk.png', 'assets/images/townsfolk_atlas.json');
-		scene.load.animation('townsfolk_anim', 'assets/images/townsfolk_anim.json');
-		scene.load.spritesheet('icons', 'assets/images/icons.png', { frameWidth: 32, frameHeight: 32 });
 	}
 	
 	get velocity() {
@@ -114,17 +116,20 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 	}
 
 	whackStuff() { 
-		this.touching.filter(obj => obj.hit && !obj.dead);
-		this.touching.forEach(obj => {
-			obj.hit();
+		this.touching = this.touching.filter(obj => obj.hit && !obj.dead);
 
-			if (obj.dead) {
-				console.log('obj', obj);
-				
-				const i = this.touching.findIndex(o => o.name === obj.name);
-				this.touching.splice(i, 1);
-				obj.destroy();
-			}
-		});
+		if (this.touching.length > 0) {
+			this.touching.forEach(obj => {
+				obj.hit();
+	
+				if (obj.dead) {
+					console.log('obj', obj);
+					
+					const i = this.touching.findIndex(o => o.name === obj.name);
+					this.touching.splice(i, 1);
+					obj.destroy();
+				}
+			});
+		} else this.sound.play();
 	}
 }
