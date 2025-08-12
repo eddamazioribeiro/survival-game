@@ -41,6 +41,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		if (fixedRotation) this.setFixedRotation();
 
 		this.createMiningCollisions(playerSensor);
+		this.createPickupCollisions(playerCollider);
 
 		this.scene.input.on('pointermove', pointer => this.setFlipX(pointer.worldX < this.x));
 	}
@@ -100,7 +101,6 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 			callback: other => {
 				if (other.bodyB.isSensor) return
 				this.touching.push(other.gameObjectB);
-				console.log(this.touching, this.touching.length);
 			},
 			context: this.scene,
 		});
@@ -108,27 +108,32 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		this.scene.matterCollision.addOnCollideEnd({
 			objectA: [playerSensor],
 			callback: other => {
-				const i = this.touching.findIndex(obj => obj.name === other.gameObjectB.name);
-				this.touching.splice(i, 1);
+				this.touching = this.touching.filter(obj => obj !== other.gameObjectB);
 			},
 			context: this.scene,
 		});
 	}
 
+	createPickupCollisions(playerCollider) {
+		this.scene.matterCollision.addOnCollideStart({
+			objectA: [playerCollider],
+			callback: other => {
+				if (other.gameObjectB && other.gameObjectB.pickup) {
+					other.gameObjectB.pickup();
+				}
+			},
+			context: this.scene,
+		});
+	}
+ 
 	whackStuff() { 
-		this.touching = this.touching.filter(obj => obj.hit && !obj.dead);
+		this.touching = this.touching.filter(obj => obj.hit && !obj.isDead);
 
 		if (this.touching.length > 0) {
 			this.touching.forEach(obj => {
 				obj.hit();
 	
-				if (obj.dead) {
-					console.log('obj', obj);
-					
-					const i = this.touching.findIndex(o => o.name === obj.name);
-					this.touching.splice(i, 1);
-					obj.destroy();
-				}
+				if (obj.isDead) obj.destroy();
 			});
 		} else this.sound.play();
 	}
