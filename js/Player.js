@@ -1,19 +1,26 @@
-export default class Player extends Phaser.Physics.Matter.Sprite {
+import MatterEntity from './MatterEntity.js';
+
+export default class Player extends MatterEntity {
 		static preload(scene) {
 		scene.load.atlas('townsfolk', 'assets/images/townsfolk.png', 'assets/images/townsfolk_atlas.json');
 		scene.load.animation('townsfolk_anim', 'assets/images/townsfolk_anim.json');
 		scene.load.spritesheet('icons', 'assets/images/icons.png', { frameWidth: 32, frameHeight: 32 });
 		scene.load.audio('swish', 'assets/audio/swish_weapon.mp3');
+		scene.load.audio('player', 'assets/audio/swish_weapon.mp3');
 	}
 
 	constructor(data) {
 		let { scene, x, y, texture, frame, fixedRotation } = data;
 		const { Body, Bodies } = Phaser.Physics.Matter.Matter;
-
-		super(scene.matter.world, x, y, texture, frame);
+		
+		super({...data,
+			name: 'player',
+			health: 2,
+			drops: [],
+		});
+		
 		this.touching = [];
-		this.scene.add.existing(this);
-		// weapon
+		
 		this.spriteWeapon = new Phaser.GameObjects.Sprite(this.scene, 0, 0, 'icons', 162);
 		this.spriteWeapon.setScale(0.8);
 		this.spriteWeapon.setOrigin(0.25, 0.75);
@@ -44,10 +51,6 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		this.createPickupCollisions(playerCollider);
 
 		this.scene.input.on('pointermove', pointer => this.setFlipX(pointer.worldX < this.x));
-	}
-	
-	get velocity() {
-		return this.body.velocity;
 	}
 
 	update() {
