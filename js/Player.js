@@ -10,17 +10,17 @@ export default class Player extends MatterEntity {
 	}
 
 	constructor(data) {
-		let { scene, x, y, texture, frame, fixedRotation } = data;
 		const { Body, Bodies } = Phaser.Physics.Matter.Matter;
 		
 		super({...data,
 			name: 'player',
 			health: 2,
 			drops: [],
+			fixedRotation: true
 		});
 		
 		this.touching = [];
-		
+
 		this.spriteWeapon = new Phaser.GameObjects.Sprite(this.scene, 0, 0, 'icons', 162);
 		this.spriteWeapon.setScale(0.8);
 		this.spriteWeapon.setOrigin(0.25, 0.75);
@@ -45,7 +45,6 @@ export default class Player extends MatterEntity {
 		});
 
 		this.setExistingBody(compoundBody);
-		if (fixedRotation) this.setFixedRotation();
 
 		this.createMiningCollisions(playerSensor);
 		this.createPickupCollisions(playerCollider);

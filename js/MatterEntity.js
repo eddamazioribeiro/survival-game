@@ -2,7 +2,7 @@ import DropItem from './DropItem.js';
 
 export default class MatterEntity extends Phaser.Physics.Matter.Sprite {
 	constructor(data) {
-		let { scene, name, x, y, health, drops, texture, frame, depth } = data;
+		let { scene, name, x, y, health, drops, texture, frame, depth, fixedRotation } = data;
 
 		super(scene.matter.world, x, y, texture, frame);
 
@@ -12,10 +12,12 @@ export default class MatterEntity extends Phaser.Physics.Matter.Sprite {
 		this.name = name;
 		this.health = health;
 		this.drops = drops;
+		this.fixedRotation = fixedRotation || true;
 		this._position = new Phaser.Math.Vector2(this.x, this.y);
 
 		if (this.name) this.sound = this.scene.sound.add(this.name);
 		this.scene.add.existing(this)
+		if (fixedRotation) this.setFixedRotation();
 	}
 
 	get position() {
