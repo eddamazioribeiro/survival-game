@@ -15,8 +15,7 @@ export default class Player extends MatterEntity {
 		super({...data,
 			name: 'player',
 			health: 2,
-			drops: [],
-			fixedRotation: true
+			drops: []
 		});
 		
 		this.touching = [];
@@ -45,6 +44,7 @@ export default class Player extends MatterEntity {
 		});
 
 		this.setExistingBody(compoundBody);
+		this.setFixedRotation();
 
 		this.createMiningCollisions(playerSensor);
 		this.createPickupCollisions(playerCollider);
