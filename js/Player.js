@@ -6,15 +6,13 @@ export default class Player extends MatterEntity {
 		scene.load.animation('townsfolk_anim', 'assets/images/townsfolk_anim.json');
 		scene.load.spritesheet('icons', 'assets/images/icons.png', { frameWidth: 32, frameHeight: 32 });
 		scene.load.audio('swish', 'assets/audio/swish_weapon.mp3');
-		scene.load.audio('player', 'assets/audio/swish_weapon.mp3');
+		scene.load.audio('player', 'assets/audio/player_hurt.mp3');
 	}
 
 	constructor(data) {
-		const { Body, Bodies } = Phaser.Physics.Matter.Matter;
-		
 		super({...data,
 			name: 'player',
-			health: 2,
+			health: 5,
 			drops: []
 		});
 		
@@ -24,8 +22,10 @@ export default class Player extends MatterEntity {
 		this.spriteWeapon.setScale(0.8);
 		this.spriteWeapon.setOrigin(0.25, 0.75);
 		this.scene.add.existing(this.spriteWeapon);
-		this.sound = this.scene.sound.add('swish');
-
+		this.sound = this.scene.sound.add('player');
+		this.soundWeapon = this.scene.sound.add('swish');
+		
+		const { Body, Bodies } = Phaser.Physics.Matter.Matter;
 		var playerCollider = Bodies.circle(
 			this.x,
 			this.y,
@@ -137,6 +137,6 @@ export default class Player extends MatterEntity {
 	
 				if (obj.isDead) obj.destroy();
 			});
-		} else this.sound.play();
+		} else this.soundWeapon.play();
 	}
 }
