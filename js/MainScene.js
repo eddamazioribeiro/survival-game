@@ -20,7 +20,7 @@ export default class MainScene extends Phaser.Scene {
 	create() {
 		const map = this.make.tilemap({ key: 'map' });
 		this.map = map;
-		const tileset = map.addTilesetImage('rpg_nature_tileset', 'tiles', 32, 32, 0, 0);
+		const tileset = map.addTilesetImage('rpg_nature_tileset', 'tiles', 32, 32, 1, 2);
 		const layer1 = map.createLayer('tile_layer_1', tileset, 0, 0);
 		const layer2 = map.createLayer('tile_layer_2', tileset, 0, 0);
 		layer1.setCollisionByProperty({ collides: true });
