@@ -31,6 +31,7 @@ export default class MainScene extends Phaser.Scene {
 
 		this.player = new Player({
 			scene: this,
+			speed: 2.5,
 			x: 100,
 			y: 100, 
 			texture: 'peasant',

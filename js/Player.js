@@ -13,7 +13,6 @@ export default class Player extends MatterEntity {
 		super({...data,
 			name: 'player',
 			health: 5,
-			speed: 2.5,
 			drops: []
 		});
 		
@@ -70,7 +69,7 @@ export default class Player extends MatterEntity {
 
 		playerVelocity.normalize();
 		playerVelocity.scale(this.speed);
-		this.setVelocity(playerVelocity.x, playerVelocity.y);
+		this.velocity = { vector: playerVelocity, speed: this.speed };
 
 		if (Math.abs(this.velocity.x) > 0.1 || Math.abs(this.velocity.y) > 0.1) {
 			this.anims.play('peasant_walk', true);

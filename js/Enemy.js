@@ -76,10 +76,7 @@ export default class Enemy extends MatterEntity {
 			let direction = this.attacking.position.subtract(this.position);
 			
 			if (direction.length() > 24) {
-				direction.normalize();
-				direction.scale(this.speed);
-				this.setVelocityX(direction.x);
-				this.setVelocityY(direction.y);
+				this.velocity = { vector: direction, speed: this.speed };
 
 				if (this.attacktimer) {
 					clearInterval(this.attacktimer);

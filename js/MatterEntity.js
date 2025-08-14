@@ -25,6 +25,12 @@ export default class MatterEntity extends Phaser.Physics.Matter.Sprite {
 		return this._position;
 	}
 
+	set velocity({ vector, speed }) {
+		vector.normalize();
+		vector.scale(speed);
+		super.setVelocity(vector.x, vector.y)
+	}
+
 	get velocity() {
 		return this.body.velocity;
 	}
