@@ -13,6 +13,7 @@ export default class Player extends MatterEntity {
 		super({...data,
 			name: 'player',
 			health: 5,
+			speed: 2.5,
 			drops: []
 		});
 		
@@ -53,7 +54,6 @@ export default class Player extends MatterEntity {
 	}
 
 	update() {
-		const speed = 2.5;
 		let playerVelocity = new Phaser.Math.Vector2();
 
 		if (this.inputKeys.left.isDown) {
@@ -69,7 +69,7 @@ export default class Player extends MatterEntity {
 		}
 
 		playerVelocity.normalize();
-		playerVelocity.scale(speed);
+		playerVelocity.scale(this.speed);
 		this.setVelocity(playerVelocity.x, playerVelocity.y);
 
 		if (Math.abs(this.velocity.x) > 0.1 || Math.abs(this.velocity.y) > 0.1) {

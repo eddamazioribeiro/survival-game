@@ -2,7 +2,7 @@ import DropItem from './DropItem.js';
 
 export default class MatterEntity extends Phaser.Physics.Matter.Sprite {
 	constructor(data) {
-		let { scene, name, x, y, health, drops, texture, frame, depth } = data;
+		let { scene, name, x, y, health, speed, drops, texture, frame, depth } = data;
 
 		super(scene.matter.world, x, y, texture, frame);
 
@@ -11,6 +11,7 @@ export default class MatterEntity extends Phaser.Physics.Matter.Sprite {
 		this.depth = depth || 1;
 		this.name = name;
 		this.health = health;
+		this.speed = speed || 2.5;
 		this.drops = drops;
 		this._position = new Phaser.Math.Vector2(this.x, this.y);
 

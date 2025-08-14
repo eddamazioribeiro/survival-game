@@ -13,6 +13,7 @@ export default class Enemy extends MatterEntity {
 		let { scene, enemy } = data;
 		let drops = JSON.parse(enemy.properties.find(prop => prop.name === 'drops').value)
 		let health = enemy.properties.find(prop => prop.name === 'health').value;
+		let speed = enemy.properties.find(prop => prop.name === 'speed').value;
 
 		super({
 			scene,
@@ -22,7 +23,8 @@ export default class Enemy extends MatterEntity {
 			texture: 'enemies',
 			frame: `${enemy.name}_idle_1`,
 			drops,
-			health
+			health,
+			speed
 		});
 
 		const { Body, Bodies } = Phaser.Physics.Matter.Matter;
@@ -74,7 +76,8 @@ export default class Enemy extends MatterEntity {
 			let direction = this.attacking.position.subtract(this.position);
 			
 			if (direction.length() > 24) {
-				let v = direction.normalize();
+				direction.normalize();
+				direction.scale(this.speed);
 				this.setVelocityX(direction.x);
 				this.setVelocityY(direction.y);
 
