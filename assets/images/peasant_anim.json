@@ -1,0 +1,52 @@
+{
+    "anims": [
+        {
+            "key": "peasant_walk",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "peasant",
+                    "frame": "peasant_m_walk_1"
+                },
+                {
+                    "key": "peasant",
+                    "frame": "peasant_m_walk_2"
+                },
+                {
+                    "key": "peasant",
+                    "frame": "peasant_m_walk_3"
+                },
+                {
+                    "key": "peasant",
+                    "frame": "peasant_m_walk_4"
+                }
+            ]
+        },
+        {
+            "key": "peasant_idle",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "peasant",
+                    "frame": "peasant_m_idle_1"
+                },
+                {
+                    "key": "peasant",
+                    "frame": "peasant_m_idle_2"
+                },
+                {
+                    "key": "peasant",
+                    "frame": "peasant_m_idle_3"
+                },
+                {
+                    "key": "peasant",
+                    "frame": "peasant_m_idle_4"
+                }
+            ]
+        }
+    ]
+}

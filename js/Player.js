@@ -2,8 +2,8 @@ import MatterEntity from './MatterEntity.js';
 
 export default class Player extends MatterEntity {
 		static preload(scene) {
-		scene.load.atlas('townsfolk', 'assets/images/townsfolk.png', 'assets/images/townsfolk_atlas.json');
-		scene.load.animation('townsfolk_anim', 'assets/images/townsfolk_anim.json');
+		scene.load.atlas('peasant', 'assets/images/peasant.png', 'assets/images/peasant_atlas.json');
+		scene.load.animation('peasant_anim', 'assets/images/peasant_anim.json');
 		scene.load.spritesheet('icons', 'assets/images/icons.png', { frameWidth: 32, frameHeight: 32 });
 		scene.load.audio('swish', 'assets/audio/swish_weapon.mp3');
 		scene.load.audio('player', 'assets/audio/player_hurt.mp3');
@@ -73,9 +73,9 @@ export default class Player extends MatterEntity {
 		this.setVelocity(playerVelocity.x, playerVelocity.y);
 
 		if (Math.abs(this.velocity.x) > 0.1 || Math.abs(this.velocity.y) > 0.1) {
-			this.anims.play('townsfolk_walk', true);
+			this.anims.play('peasant_walk', true);
 		} else {
-			this.anims.play('townsfolk_idle', true);
+			this.anims.play('peasant_idle', true);
 		}
 
 		this.spriteWeapon.setPosition(this.x, this.y);

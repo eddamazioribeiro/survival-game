@@ -33,8 +33,8 @@ export default class MainScene extends Phaser.Scene {
 			scene: this,
 			x: 100,
 			y: 100, 
-			texture: 'townsfolk',
-			frame: 'townsfolk_m_idle_1',
+			texture: 'peasant',
+			frame: 'peasant_m_idle_1',
 			fixedRotation: true
 		});
 		this.player.inputKeys = this.input.keyboard.addKeys({
