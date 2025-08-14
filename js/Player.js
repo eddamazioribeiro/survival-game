@@ -49,10 +49,14 @@ export default class Player extends MatterEntity {
 		this.createMiningCollisions(playerSensor);
 		this.createPickupCollisions(playerCollider);
 
-		this.scene.input.on('pointermove', pointer => this.setFlipX(pointer.worldX < this.x));
+		this.scene.input.on('pointermove', pointer => { 
+			if (!this.isDead) this.setFlipX(pointer.worldX < this.x );
+		});
 	}
 
 	update() {
+		if (this.isDead) return;
+
 		let playerVelocity = new Phaser.Math.Vector2();
 
 		if (this.inputKeys.left.isDown) {
@@ -137,5 +141,12 @@ export default class Player extends MatterEntity {
 				if (obj.isDead) obj.destroy();
 			});
 		} else this.soundWeapon.play();
+	}
+
+	onDeath = () => {
+		this.anims.stop();
+		this.setTexture('icons', 0);
+		this.setOrigin(0.5);
+		this.spriteWeapon.destroy();
 	}
 }
