@@ -15,6 +15,7 @@ export default class MainScene extends Phaser.Scene {
 		Resource.preload(this);
 		this.load.image('tiles', 'assets/images/rpg_nature_tileset.png');
 		this.load.tilemapTiledJSON('map', 'assets/images/map.json');
+		this.load.audio('game_start', 'assets/audio/game_start.mp3');
 	}
 
 	create() {
@@ -50,6 +51,9 @@ export default class MainScene extends Phaser.Scene {
 		camera.startFollow(this.player);
 		camera.setLerp(0.1, 0.1);
 		camera.setBounds(0, 0, this.game.config.width, this.game.config.height);
+
+		this.soundGameStart = this.sound.add('game_start');
+		if (this.soundGameStart) this.soundGameStart.play();
 	}
 
 	update() {

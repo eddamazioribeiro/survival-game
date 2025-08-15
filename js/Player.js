@@ -5,8 +5,9 @@ export default class Player extends MatterEntity {
 		scene.load.atlas('peasant', 'assets/images/peasant.png', 'assets/images/peasant_atlas.json');
 		scene.load.animation('peasant_anim', 'assets/images/peasant_anim.json');
 		scene.load.spritesheet('icons', 'assets/images/icons.png', { frameWidth: 32, frameHeight: 32 });
-		scene.load.audio('swish', 'assets/audio/swish_weapon.mp3');
 		scene.load.audio('player', 'assets/audio/player_hurt.mp3');
+		scene.load.audio('swish', 'assets/audio/swish_weapon.mp3');
+		scene.load.audio('game_over', 'assets/audio/game_over.mp3');
 	}
 
 	constructor(data) {
@@ -24,6 +25,7 @@ export default class Player extends MatterEntity {
 		this.scene.add.existing(this.spriteWeapon);
 		this.sound = this.scene.sound.add('player');
 		this.soundWeapon = this.scene.sound.add('swish');
+		this.soundGameOver = this.scene.sound.add('game_over');
 		
 		const { Body, Bodies } = Phaser.Physics.Matter.Matter;
 		var playerCollider = Bodies.circle(
@@ -148,5 +150,6 @@ export default class Player extends MatterEntity {
 		this.setTexture('icons', 0);
 		this.setOrigin(0.5);
 		this.spriteWeapon.destroy();
+		if (this.soundGameOver) this.soundGameOver.play();
 	}
 }
