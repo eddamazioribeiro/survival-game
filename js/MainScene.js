@@ -54,6 +54,8 @@ export default class MainScene extends Phaser.Scene {
 
 		this.soundGameStart = this.sound.add('game_start');
 		if (this.soundGameStart) this.soundGameStart.play();
+
+		this.scene.launch('InventoryScene');
 	}
 
 	update() {

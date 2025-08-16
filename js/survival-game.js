@@ -1,3 +1,4 @@
+import InventoryScene from './InventoryScene.js';
 import MainScene from './MainScene.js';
 
 const config = {
@@ -7,7 +8,8 @@ const config = {
 	height: 512,
 	backgroundColor: '#999999',
 	scene: [ 
-		MainScene
+		MainScene,
+		InventoryScene
 	],
 	scale: {
 		zoom: 2,
