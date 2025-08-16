@@ -1,4 +1,5 @@
 import MatterEntity from './MatterEntity.js';
+import Inventory from './Inventory.js';
 
 export default class Player extends MatterEntity {
 		static preload(scene) {
@@ -18,6 +19,7 @@ export default class Player extends MatterEntity {
 		});
 		
 		this.touching = [];
+		this.inventory = new Inventory();
 
 		this.spriteWeapon = new Phaser.GameObjects.Sprite(this.scene, 0, 0, 'icons', 162);
 		this.spriteWeapon.setScale(0.8);

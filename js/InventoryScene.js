@@ -1,3 +1,5 @@
+import items from './Items.js';
+
 export default class InventoryScene extends Phaser.Scene {
 	constructor() {
 		super('InventoryScene');
@@ -15,8 +17,8 @@ export default class InventoryScene extends Phaser.Scene {
 	init(data ) {
 		let { mainScene } = data;
 		
-		// this.mainScene = mainScene;
-		// this.inventory = mainScene.player.inventory;
+		this.mainScene = mainScene;
+		this.inventory = mainScene.player.inventory;
 	}
 
 	get tileSize () {
@@ -30,6 +32,25 @@ export default class InventoryScene extends Phaser.Scene {
 
 			let inventorySlot = this.add.sprite(x, y, 'icons', 11);
 			inventorySlot.setScale(this.uiScale);
+
+			let item = this.inventory.getItem(i);
+
+			if (item) {
+				inventorySlot.item = this.add.sprite(
+					inventorySlot.x,
+					inventorySlot.y - this.tileSize / 12,
+					'icons',
+					items[item.name].frame
+				);
+				inventorySlot.quantityText = this.add.text(
+					inventorySlot.x + this.tileSize / 4,
+					inventorySlot.y + this.tileSize / 6,
+					item.quantity, {
+						font: '11ox',
+						fill: '#111'
+					}
+				);
+			}
 		}
 	}
 
