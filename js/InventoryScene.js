@@ -4,8 +4,6 @@ export default class InventoryScene extends Phaser.Scene {
 	constructor() {
 		super('InventoryScene');
 		
-		this.maxColumns = 8;
-		this.maxRows = 3;
 		this.rows = 1;
 		this.uiScale = 1.5;
 		this.gridSpacing = 4;
@@ -19,6 +17,8 @@ export default class InventoryScene extends Phaser.Scene {
 		
 		this.mainScene = mainScene;
 		this.inventory = mainScene.player.inventory;
+		this.maxColumns = this.inventory.maxColumns;
+		this.maxRows = this.inventory.maxRows;
 	}
 
 	get tileSize () {
