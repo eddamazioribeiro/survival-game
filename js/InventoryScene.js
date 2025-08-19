@@ -96,7 +96,8 @@ export default class InventoryScene extends Phaser.Scene {
 		});
 
 		this.input.setTopOnly(false);
-		this.input.on('dragstart', () => { 
+		this.input.on('dragstart', () => {
+			this.inventory.dragging = true;
 			this.startIndex = this.hoverIndex;
 			this.inventorySlots[this.startIndex].quantityText.destroy();
 		});
@@ -105,10 +106,10 @@ export default class InventoryScene extends Phaser.Scene {
 			gameObject.y = dragY;
 		});
 		this.input.on('dragend', () => {
+			this.inventory.dragging = false;
 			this.inventory.moveItem(this.startIndex, this.hoverIndex);
 			this.refresh();
 		});
-
 
 		this.refresh();
 	}

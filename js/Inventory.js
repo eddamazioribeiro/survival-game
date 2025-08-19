@@ -5,6 +5,7 @@ export default class Inventory {
 		this.maxColumns = 8;
 		this.maxRows = 3;
 		this.selected = 0;
+		this.dragging = false;
 		this.items = {
 			0: { name: 'pickaxe', quantity: 1 },
 			1: { name: 'fur', quantity: 5 },

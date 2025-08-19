@@ -91,9 +91,11 @@ export default class Player extends MatterEntity {
 		} else {
 			this.spriteWeapon.setVisible(false);
 		}
-
-		this.spriteWeapon.setPosition(this.x, this.y);
-		this.weaponRotate();
+		
+		if (!this.inventory.dragging) {
+			this.spriteWeapon.setPosition(this.x, this.y);
+			this.weaponRotate();
+		}
 	}
 
 	weaponRotate() {
@@ -154,7 +156,7 @@ export default class Player extends MatterEntity {
 		} else this.soundWeapon.play();
 	}
 
-	onDeath = () => {
+	onDeath() {
 		this.anims.stop();
 		this.setTexture('icons', 0);
 		this.setOrigin(0.5);
