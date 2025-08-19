@@ -85,6 +85,13 @@ export default class Player extends MatterEntity {
 			this.anims.play('peasant_idle', true);
 		}
 
+		if (this.inventory.selectedItem) {
+			this.spriteWeapon.setTexture('icons', this.inventory.getItemFrame(this.inventory.selectedItem));
+			this.spriteWeapon.setVisible(true);
+		} else {
+			this.spriteWeapon.setVisible(false);
+		}
+
 		this.spriteWeapon.setPosition(this.x, this.y);
 		this.weaponRotate();
 	}

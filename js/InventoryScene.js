@@ -73,9 +73,23 @@ export default class InventoryScene extends Phaser.Scene {
 
 			this.inventorySlots.push(inventorySlot);
 		}
+
+		this.updateSelected();
+	}
+
+	updateSelected() {
+		for (let i = 0; i < this.maxColumns; i++) {
+			this.inventorySlots[i].tint = this.inventory.selected === i ?'0xffff00' : '0xffffff';
+		}
+
 	}
 
 	create() {
+		this.input.on('wheel', ({ deltaY }) => {
+			this.inventory.selected = Math.max(0, this.inventory.selected + (deltaY > 0 ? 1 : -1)) % this.maxColumns;
+			this.updateSelected();
+		})
+
 		this.input.keyboard.on('keydown-I', () => {
 			this.rows = this.rows === 1 ? this.maxRows : 1;
 			this.refresh();
