@@ -33,4 +33,13 @@ export default class Inventory {
 	getItem(index) {
 		return this.items[index];
 	}
+
+	moveItem(start, end) {
+		console.log('moveItem', { start, end });
+		
+		if (start === end || this.items[end]) return;
+
+		this.items[end] = this.items[start];
+		delete this.items[start];
+	}
 }

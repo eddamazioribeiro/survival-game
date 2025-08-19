@@ -21,17 +21,33 @@ export default class InventoryScene extends Phaser.Scene {
 		this.maxRows = this.inventory.maxRows;
 	}
 
-	get tileSize () {
+	get tileSize() {
 		return this._tileSize * this.uiScale;
 	}
 
-	refresh () {
+	destroyInventorySlot(slot) {
+		if (slot.item) slot.item.destroy();
+		if (slot.quantityText) slot.quantityText.destroy();
+		
+		slot.destroy();
+	}
+
+	refresh() {
+		this.inventorySlots.forEach(s => this.destroyInventorySlot(s));
+		this.inventorySlots = [];
+
 		for (let i = 0; i < this.maxColumns * this.rows; i++) {
 			let x = this.margin + this.tileSize / 2 + (i % this.maxColumns) * (this.tileSize + this.gridSpacing);
 			let y = this.margin + this.tileSize /2 + Math.floor(i/this.maxColumns) * (this.tileSize + this.gridSpacing);
 
 			let inventorySlot = this.add.sprite(x, y, 'icons', 11);
 			inventorySlot.setScale(this.uiScale);
+			inventorySlot.depth = -1;
+
+			inventorySlot.setInteractive();
+			inventorySlot.on('pointerover', _ => {
+				this.hoverIndex = i;
+			});
 
 			let item = this.inventory.getItem(i);
 
@@ -46,15 +62,42 @@ export default class InventoryScene extends Phaser.Scene {
 					inventorySlot.x + this.tileSize / 4,
 					inventorySlot.y + this.tileSize / 6,
 					item.quantity, {
-						font: '11ox',
+						font: '11px Courier',
 						fill: '#111'
 					}
-				);
+				).setOrigin(0.5, 0);
+				
+				inventorySlot.item.setInteractive();
+				inventorySlot.item.depth = 0;
+
+				this.input.setDraggable(inventorySlot.item);
 			}
+
+			this.inventorySlots.push(inventorySlot);
 		}
 	}
 
 	create() {
+		this.input.keyboard.on('keydown-I', () => {
+			this.rows = this.rows === 1 ? this.maxRows : 1;
+			this.refresh();
+		});
+
+		this.input.setTopOnly(false);
+		this.input.on('dragstart', () => { 
+			this.startIndex = this.hoverIndex;
+			this.inventorySlots[this.startIndex].quantityText.destroy();
+		});
+		this.input.on('drag', (_, gameObject, dragX, dragY) => {
+			gameObject.x = dragX;
+			gameObject.y = dragY;
+		});
+		this.input.on('dragend', () => {
+			this.inventory.moveItem(this.startIndex, this.hoverIndex);
+			this.refresh();
+		});
+
+
 		this.refresh();
 	}
 }
