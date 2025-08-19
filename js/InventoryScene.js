@@ -19,6 +19,7 @@ export default class InventoryScene extends Phaser.Scene {
 		this.inventory = mainScene.player.inventory;
 		this.maxColumns = this.inventory.maxColumns;
 		this.maxRows = this.inventory.maxRows;
+		this.inventory.subscribe(() => this.refresh());
 	}
 
 	get tileSize() {

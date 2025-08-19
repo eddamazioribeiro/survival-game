@@ -5,6 +5,7 @@ export default class Inventory {
 		this.maxColumns = 8;
 		this.maxRows = 3;
 		this.selected = 0;
+		this.observers = [];
 		this.dragging = false;
 		this.items = {
 			0: { name: 'pickaxe', quantity: 1 },
@@ -15,6 +16,12 @@ export default class Inventory {
 
 		this.addItem({ name: 'health_potion', quantity: 1 });
 	}
+
+	subscribe = (fn) => { this.observers.push(fn) }
+
+	unsubscribe = (fn) => { this.observers.filter(subscriber =>  subscriber !== fn) }
+
+	broadcast = () => { this.observers.forEach(subscriber => subscriber()) }
 
 	addItem(item) {
 		let existingKey = Object.keys(this.items).find(key => this.items[key].name === item.name);
@@ -31,6 +38,8 @@ export default class Inventory {
 				}
 			}
 		}
+
+		this.broadcast();
 	}
 
 	getItem(index) {
@@ -48,6 +57,8 @@ export default class Inventory {
 		if (item) this.items[start] = item;
 
 		this.selected = end;
+
+		this.broadcast();
 	}
 
 	get selectedItem() {

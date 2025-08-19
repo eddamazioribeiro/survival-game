@@ -49,7 +49,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -77,7 +77,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -105,7 +105,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -133,7 +133,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -161,7 +161,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -189,7 +189,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -217,7 +217,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -245,7 +245,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -273,7 +273,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -301,7 +301,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -329,7 +329,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -357,7 +357,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -385,7 +385,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -413,7 +413,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -441,7 +441,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -469,7 +469,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -498,7 +498,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -526,7 +526,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -554,7 +554,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -582,7 +582,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -610,7 +610,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -638,7 +638,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -666,7 +666,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -694,7 +694,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[272, 272]"
+                         "value":"[\"wood\", \"wood\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -722,7 +722,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -750,7 +750,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -778,7 +778,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -806,7 +806,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -834,7 +834,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -862,7 +862,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -890,7 +890,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -918,7 +918,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -947,7 +947,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -975,7 +975,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1003,7 +1003,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1031,7 +1031,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1059,7 +1059,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1087,7 +1087,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1115,7 +1115,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1143,7 +1143,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1171,7 +1171,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1199,7 +1199,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[273, 273]"
+                         "value":"[\"stone\", \"stone\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1227,7 +1227,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[273, 273]"
+                         "value":"[\"stone\", \"stone\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1255,7 +1255,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[273, 273]"
+                         "value":"[\"stone\", \"stone\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1283,7 +1283,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[273, 273]"
+                         "value":"[\"stone\", \"stone\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1311,7 +1311,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[273, 273]"
+                         "value":"[\"stone\", \"stone\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1339,7 +1339,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[273, 273]"
+                         "value":"[\"stone\", \"stone\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1367,7 +1367,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1396,7 +1396,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[228, 228]"
+                         "value":"[\"berries\", \"berries\"]"
                         }, 
                         {
                          "name":"yOrigin",
@@ -1430,7 +1430,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[241,280]"
+                         "value":"[\"meat\",\"fur\"]"
                         }, 
                         {
                          "name":"health",
@@ -1458,7 +1458,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[201,203]"
+                         "value":"[\"health_potion\",\"wand_fire\"]"
                         }, 
                         {
                          "name":"health",
@@ -1486,7 +1486,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[243]"
+                         "value":"[\"meat\"]"
                         }, 
                         {
                          "name":"health",
@@ -1581,7 +1581,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[273,273]"
+                         "value":"[\"stone\", \"stone\"]"
                         }, 
                         {
                          "name":"yOrigin",

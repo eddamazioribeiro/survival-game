@@ -137,7 +137,9 @@ export default class Player extends MatterEntity {
 			objectA: [playerCollider],
 			callback: other => {
 				if (other.gameObjectB && other.gameObjectB.pickup) {
-					other.gameObjectB.pickup();
+					if (other.gameObjectB.pickup()) {
+						this.inventory.addItem({ name: other.gameObjectB.name, quantity: 1 });
+					}
 				}
 			},
 			context: this.scene,
