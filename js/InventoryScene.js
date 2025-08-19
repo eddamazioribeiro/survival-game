@@ -68,8 +68,6 @@ export default class InventoryScene extends Phaser.Scene {
 				).setOrigin(0.5, 0);
 				
 				inventorySlot.item.setInteractive();
-				inventorySlot.item.depth = 0;
-
 				this.input.setDraggable(inventorySlot.item);
 			}
 

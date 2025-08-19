@@ -14,7 +14,6 @@ export default class Inventory {
 
 	addItem(item) {
 		let existingKey = Object.keys(this.items).find(key => this.items[key].name === item.name);
-		console.log(existingKey);
 
 		if (existingKey) {
 			this.items[existingKey].quantity += item.quantity;
@@ -35,11 +34,13 @@ export default class Inventory {
 	}
 
 	moveItem(start, end) {
-		console.log('moveItem', { start, end });
-		
-		if (start === end || this.items[end]) return;
+		if (start === end) return;
+
+		let item = this.items[end];
 
 		this.items[end] = this.items[start];
 		delete this.items[start];
+		
+		if (item) this.items[start] = item;
 	}
 }
