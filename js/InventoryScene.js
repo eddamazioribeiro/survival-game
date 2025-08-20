@@ -49,6 +49,12 @@ export default class InventoryScene extends Phaser.Scene {
 			inventorySlot.on('pointerover', _ => {
 				this.hoverIndex = i;
 			});
+			inventorySlot.on('pointerdown', () => {
+				if (i < this.maxColumns) {
+					this.inventory.selected = i;
+					this.updateSelected();
+				}
+			});
 
 			let item = this.inventory.getItem(i);
 
@@ -82,7 +88,6 @@ export default class InventoryScene extends Phaser.Scene {
 		for (let i = 0; i < this.maxColumns; i++) {
 			this.inventorySlots[i].tint = this.inventory.selected === i ?'0xffff00' : '0xffffff';
 		}
-
 	}
 
 	create() {

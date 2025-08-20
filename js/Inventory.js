@@ -8,13 +8,8 @@ export default class Inventory {
 		this.observers = [];
 		this.dragging = false;
 		this.items = {
-			0: { name: 'pickaxe', quantity: 1 },
-			1: { name: 'fur', quantity: 5 },
-			2: { name: 'stone', quantity: 3 },
-			3: { name: 'shovel', quantity: 1 }
+			0: { name: 'pickaxe', quantity: 1 }
 		}
-
-		this.addItem({ name: 'health_potion', quantity: 1 });
 	}
 
 	subscribe = (fn) => { this.observers.push(fn) }
