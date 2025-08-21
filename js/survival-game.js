@@ -1,5 +1,6 @@
-import InventoryScene from './InventoryScene.js';
 import MainScene from './MainScene.js';
+import InventoryScene from './InventoryScene.js';
+import CraftingScene from './CraftingScene.js';
 
 const config = {
 	type: Phaser.AUTO,
@@ -9,7 +10,8 @@ const config = {
 	backgroundColor: '#999999',
 	scene: [ 
 		MainScene,
-		InventoryScene
+		InventoryScene,
+		CraftingScene
 	],
 	scale: {
 		zoom: 2,

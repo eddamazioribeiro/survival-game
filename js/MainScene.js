@@ -56,6 +56,7 @@ export default class MainScene extends Phaser.Scene {
 		if (this.soundGameStart) this.soundGameStart.play();
 
 		this.scene.launch('InventoryScene', { mainScene: this });
+		this.scene.launch('CraftingScene', { mainScene: this });
 	}
 
 	update() {

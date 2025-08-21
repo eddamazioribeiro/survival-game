@@ -1,14 +1,12 @@
 import items from './Items.js';
+import UIBaseScene from './UIBaseScene.js';
 
-export default class InventoryScene extends Phaser.Scene {
+export default class InventoryScene extends UIBaseScene {
 	constructor() {
 		super('InventoryScene');
 		
 		this.rows = 1;
-		this.uiScale = 1.5;
 		this.gridSpacing = 4;
-		this.margin = 8;
-		this._tileSize = 32;
 		this.inventorySlots = [];
 	}
 
