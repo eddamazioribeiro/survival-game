@@ -17,6 +17,8 @@ export default class CraftingScene extends UIBaseScene {
 
 	create() {
 		this.updateCraftableSlots();
+		this.updateSelected();
+
 		this.input.on('wheel', ({ deltaY }) => {
 			this.crafting.selected = Math.max(0, this.crafting.selected + (deltaY > 0 ? 1 : -1)) % this.crafting.items.length;
 			this.updateSelected();
@@ -69,5 +71,7 @@ export default class CraftingScene extends UIBaseScene {
 
 			this.craftingSlots[i] = craftingSlot;
 		}
+
+		this.updateSelected();
 	}
 }

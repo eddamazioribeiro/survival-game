@@ -82,6 +82,7 @@ export default class Inventory {
 		// 	y: coordinates.y,
 		// });
 
+		// removeitem(item.name)
 		// this.broadcast();
 
 	}

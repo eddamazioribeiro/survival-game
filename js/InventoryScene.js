@@ -44,7 +44,7 @@ export default class InventoryScene extends UIBaseScene {
 			inventorySlot.depth = -1;
 
 			inventorySlot.setInteractive();
-			inventorySlot.on('pointerover', _ => {
+			inventorySlot.on('pointerover', () => {
 				this.hoverIndex = i;
 			});
 			inventorySlot.on('pointerdown', () => {
