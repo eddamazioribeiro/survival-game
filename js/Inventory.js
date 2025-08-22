@@ -12,6 +12,10 @@ export default class Inventory {
 		}
 	}
 
+	get selectedItem() {
+		return this.items[this.selected];
+	}
+
 	subscribe = (fn) => { this.observers.push(fn) }
 
 	unsubscribe = (fn) => { this.observers.filter(subscriber =>  subscriber !== fn) }
@@ -56,11 +60,18 @@ export default class Inventory {
 		this.broadcast();
 	}
 
-	get selectedItem() {
-		return this.items[this.selected];
+	dropItem(item) {
+		console.log('dropItem', item);
 	}
 
 	getItemFrame(item) {
 		return items[item.name].frame;
+	}
+
+	getItemQuantity(itemName) {
+		return Object.values(this.items)
+			.filter(i => i.name === itemName)
+			.map(i => i.quantity)
+			.reduce((acc, currVal) => acc + currVal, 0); // defaults to 0 if undefined
 	}
 }

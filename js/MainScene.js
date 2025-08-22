@@ -1,6 +1,7 @@
 import Enemy from './Enemy.js';
 import Player from './Player.js';
 import Resource from './Resource.js';
+import Crafting from './Crafting.js';
 
 export default class MainScene extends Phaser.Scene {
 	constructor() {
@@ -56,6 +57,7 @@ export default class MainScene extends Phaser.Scene {
 		if (this.soundGameStart) this.soundGameStart.play();
 
 		this.scene.launch('InventoryScene', { mainScene: this });
+		this.crafting = new Crafting({ mainScene: this });
 		this.scene.launch('CraftingScene', { mainScene: this });
 	}
 

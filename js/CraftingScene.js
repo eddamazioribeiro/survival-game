@@ -10,10 +10,10 @@ export default class CraftingScene extends UIBaseScene {
 	}
 	
 	init(data) {
-		// let { mainScene } = data;
-		// this.mainScene = mainScene;
-		// this.crafting = mainScene.crafting;
-		// this.crafting.inventory.subscribe(() => this.updateCraftableSlots());
+		let { mainScene } = data;
+		this.mainScene = mainScene;
+		this.crafting = mainScene.crafting;
+		this.crafting.inventory.subscribe(() => this.updateCraftableSlots());
 	}
 
 	create() {
@@ -27,6 +27,8 @@ export default class CraftingScene extends UIBaseScene {
 	}
 
 	updateCraftableSlots() {
+		this.crafting.updateItems();
+
 		for (let i = 0; i < 3; i++) {
 			if (this.craftingSlots[i]) this.destroyCrafitingSlot(this.craftingSlots[i]);
 
