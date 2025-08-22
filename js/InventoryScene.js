@@ -112,6 +112,12 @@ export default class InventoryScene extends UIBaseScene {
 		this.input.on('dragend', () => {
 			this.inventory.dragging = false;
 			this.inventory.moveItem(this.startIndex, this.hoverIndex);
+
+			if (this.hoverIndex > this.maxColumns) {
+				this.inventory.selected = undefined;
+				this.updateSelected();
+			}
+
 			this.refresh();
 		});
 

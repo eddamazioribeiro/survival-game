@@ -101,6 +101,8 @@ export default class Player extends MatterEntity {
 	weaponRotate() {
 		let pointer = this.scene.input.activePointer;
 
+		if (!this.inventory.selectedItem) return;
+		
 		if (pointer.isDown) this.weaponRotation += 3;
 		else this.weaponRotation = 0;
 
