@@ -90,6 +90,8 @@ export default class InventoryScene extends UIBaseScene {
 
 	create() {
 		this.input.on('wheel', ({ deltaY }) => {
+			if (this.scene.isActive('CraftingScene')) return;
+			
 			this.inventory.selected = Math.max(0, this.inventory.selected + (deltaY > 0 ? 1 : -1)) % this.maxColumns;
 			this.updateSelected();
 		})

@@ -56,7 +56,6 @@ export default class Inventory {
 		if (item) this.items[start] = item;
 
 		this.selected = end;
-
 		this.broadcast();
 	}
 
