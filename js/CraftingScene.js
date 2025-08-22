@@ -21,6 +21,10 @@ export default class CraftingScene extends UIBaseScene {
 			this.crafting.selected = Math.max(0, this.crafting.selected + (deltaY > 0 ? 1 : -1)) % this.crafting.items.length;
 			this.updateSelected();
 		});
+
+		this.input.keyboard.on('keydown-E', () => {
+			this.crafting.craft();
+		});
 	}
 
 	updateSelected() {

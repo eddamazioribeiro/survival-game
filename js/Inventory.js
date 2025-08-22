@@ -59,8 +59,31 @@ export default class Inventory {
 		this.broadcast();
 	}
 
-	dropItem(item) {
-		console.log('dropItem', item);
+	removeItem(itemName) {
+		let existingKey = Object.keys(this.items).find(key => this.items[key].name === itemName);
+
+		if (existingKey) {
+			this.items[existingKey].quantity--;
+
+			if (this.items[existingKey].quantity <= 0) delete this.items[existingKey];
+		}
+
+		this.broadcast();
+	}
+
+	dropItem(item, coordinates) {
+		console.log('dropItem', { item, coordinates });
+		// to drop a new item in the pointer coordinates
+		// new DropItem({
+		// 	name: item.name,
+		// 	frame: item.frame,
+		// 	scene: this.mainScene,
+		// 	x: coordinates.x,
+		// 	y: coordinates.y,
+		// });
+
+		// this.broadcast();
+
 	}
 
 	getItemFrame(item) {

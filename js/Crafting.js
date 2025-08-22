@@ -1,4 +1,5 @@
 
+import DropItem from './DropItem.js';
 import items from './Items.js';
 
 export default class Crafting {
@@ -35,6 +36,22 @@ export default class Crafting {
 			});
 
 			this.items.push({ name: itemName, frame: items[itemName].frame, matDetails, canCraft });
+		}
+	}
+
+	craft() {
+		let item = this.items[this.selected];
+
+		if (item.canCraft) {
+			new DropItem({
+				name: item.name,
+				frame: item.frame,
+				scene: this.mainScene,
+				x: this.player.x - 32,
+				y: this.player.y - 32
+			});
+
+			item.matDetails.forEach(m => this.inventory.removeItem(m.name));
 		}
 	}
 }
