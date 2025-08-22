@@ -30,18 +30,18 @@ export default class CraftingScene extends UIBaseScene {
 		for (let i = 0; i < 3; i++) {
 			if (this.craftingSlots[i]) this.destroyCrafitingSlot(this.craftingSlots[i]);
 
-			let x = this.margin + this.tileSize / 2;
-			let y = i * this.tileSize + this.game.config.height / 2;
+			let xSlot = this.margin + this.tileSize / 2;
+			let ySlot = i * this.tileSize + this.game.config.height / 2;
 
-			this.craftingSlots[i] = this.add.sprite(x, y, 'icons', 11);
-			this.craftingSlots[i].item = this.add.sprite(x, y, 'icons', 0);
+			this.craftingSlots[i] = this.add.sprite(xSlot, ySlot, 'icons', 11);
+			this.craftingSlots[i].item = this.add.sprite(xSlot, ySlot, 'icons', 0);
 			this.craftingSlots[i].materials = [];
 
 			for (let j = 0; j < 4; j++) {
 				let scale = 0.75;
-				let x = x + this.tileSize + j * this.tileSize * scale;
+				let xMaterial = xSlot + this.tileSize + j * this.tileSize * scale;
 
-				this.craftingSlots[i].materials[j] = this.add.sprite(x,	y, 'icons', 1);
+				this.craftingSlots[i].materials[j] = this.add.sprite(xMaterial, ySlot, 'icons', 1);
 				this.craftingSlots[i].materials[j].setScale(scale);
 			}
 		}
