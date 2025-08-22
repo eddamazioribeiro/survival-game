@@ -29,22 +29,29 @@ export default class CraftingScene extends UIBaseScene {
 	updateCraftableSlots() {
 		this.crafting.updateItems();
 
-		for (let i = 0; i < 3; i++) {
-			if (this.craftingSlots[i]) this.destroyCrafitingSlot(this.craftingSlots[i]);
+		for (let i = 0; i < this.crafting.items.length; i++) {
+			let craftingSlot = this.craftingSlots[i];
+
+			if (craftingSlot) this.destroyCrafitingSlot(craftingSlot);
+			const craftableItem = this.crafting.items[i];
 
 			let xSlot = this.margin + this.tileSize / 2;
 			let ySlot = i * this.tileSize + this.game.config.height / 2;
 
-			this.craftingSlots[i] = this.add.sprite(xSlot, ySlot, 'icons', 11);
-			this.craftingSlots[i].item = this.add.sprite(xSlot, ySlot, 'icons', 0);
-			this.craftingSlots[i].materials = [];
+			craftingSlot = this.add.sprite(xSlot, ySlot, 'icons', 11);
+			craftingSlot.item = this.add.sprite(xSlot, ySlot, 'icons', craftableItem.frame);
+			craftingSlot.item.tint = craftableItem.canCraft ? '0xffffff' : '0x555555';
+			craftingSlot.materials = [];
 
-			for (let j = 0; j < 4; j++) {
+			for (let j = 0; j < craftableItem.matDetails.length; j++) {
 				let scale = 0.75;
 				let xMaterial = xSlot + this.tileSize + j * this.tileSize * scale;
+				const item = craftableItem.matDetails[j];
+				let material = craftingSlot.materials[j];
 
-				this.craftingSlots[i].materials[j] = this.add.sprite(xMaterial, ySlot, 'icons', 1);
-				this.craftingSlots[i].materials[j].setScale(scale);
+				material = this.add.sprite(xMaterial, ySlot, 'icons', item.frame);
+				material.setScale(scale);
+				material.tint = item.available ? '0xffffff' : '0x555555';
 			}
 		}
 	}

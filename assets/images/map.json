@@ -1458,7 +1458,7 @@
                         {
                          "name":"drops",
                          "type":"string",
-                         "value":"[\"health_potion\",\"wand_fire\"]"
+                         "value":"[\"wood\",\"wood\", \"wand_fire\"]"
                         }, 
                         {
                          "name":"health",
