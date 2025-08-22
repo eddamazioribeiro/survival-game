@@ -36,7 +36,5 @@ export default class Crafting {
 
 			this.items.push({ name: itemName, frame: items[itemName].frame, matDetails, canCraft });
 		}
-
-		console.log(this.items);
 	}
 }

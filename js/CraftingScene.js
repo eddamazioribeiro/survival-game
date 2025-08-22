@@ -6,7 +6,6 @@ export default class CraftingScene extends UIBaseScene {
 
 		this.craftingSlots = [];
 		this.uiScale = 1.0;
-		
 	}
 	
 	init(data) {
@@ -18,6 +17,16 @@ export default class CraftingScene extends UIBaseScene {
 
 	create() {
 		this.updateCraftableSlots();
+		this.input.on('wheel', ({ deltaY }) => {
+			this.crafting.selected = Math.max(0, this.crafting.selected + (deltaY > 0 ? 1 : -1)) % this.crafting.items.length;
+			this.updateSelected();
+		});
+	}
+
+	updateSelected() {
+		for (let i = 0; i < this.crafting.items.length; i++) {
+			this.craftingSlots[i].tint = this.crafting.selected === i ? 0xffff00 : 0xffffff;
+		}
 	}
 
 	destroyCrafitingSlot(slot) {
@@ -53,6 +62,8 @@ export default class CraftingScene extends UIBaseScene {
 				material.setScale(scale);
 				material.tint = item.available ? '0xffffff' : '0x555555';
 			}
+
+			this.craftingSlots[i] = craftingSlot;
 		}
 	}
 }
