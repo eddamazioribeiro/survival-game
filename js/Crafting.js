@@ -1,6 +1,6 @@
 
-import DropItem from './DropItem.js';
 import items from './Items.js';
+import DropItem from './DropItem.js';
 
 export default class Crafting {
 	constructor(data) {

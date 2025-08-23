@@ -10,6 +10,7 @@ export default class CraftingScene extends UIBaseScene {
 	
 	init(data) {
 		let { mainScene } = data;
+		
 		this.mainScene = mainScene;
 		this.crafting = mainScene.crafting;
 		this.crafting.inventory.subscribe(() => this.updateCraftableSlots());

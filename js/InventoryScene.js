@@ -10,10 +10,11 @@ export default class InventoryScene extends UIBaseScene {
 		this.inventorySlots = [];
 	}
 
-	init(data ) {
+	init(data) {
 		let { mainScene } = data;
 		
 		this.mainScene = mainScene;
+		this.player = mainScene.player;
 		this.inventory = mainScene.player.inventory;
 		this.maxColumns = this.inventory.maxColumns;
 		this.maxRows = this.inventory.maxRows;
@@ -84,7 +85,7 @@ export default class InventoryScene extends UIBaseScene {
 
 	updateSelected() {
 		for (let i = 0; i < this.maxColumns; i++) {
-			this.inventorySlots[i].tint = this.inventory.selected === i ?'0xffff00' : '0xffffff';
+			this.inventorySlots[i].tint = this.inventory.selected === i ? 0xffff00 : 0xffffff;
 		}
 	}
 
@@ -99,6 +100,11 @@ export default class InventoryScene extends UIBaseScene {
 		this.input.keyboard.on('keydown-I', () => {
 			this.rows = this.rows === 1 ? this.maxRows : 1;
 			this.refresh();
+		});
+		this.input.keyboard.on('keydown-Q', () => {
+			let drop = this.inventory.selectedItem;
+
+			if (drop) this.inventory.dropItem(drop, { x: this.player.x + (this.player.flipX ? -32 : 32), y: this.player.y });
 		});
 
 		this.input.setTopOnly(false);

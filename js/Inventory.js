@@ -1,15 +1,19 @@
 import items from './Items.js';
+import DropItem from './DropItem.js';
 
 export default class Inventory {
-	constructor() {
+	constructor(data) {
+		const { scene } = data;
+
+		this.mainScene = scene;
 		this.maxColumns = 8;
 		this.maxRows = 3;
 		this.selected = 0;
 		this.observers = [];
 		this.dragging = false;
-		this.items = {
-			0: { name: 'pickaxe', quantity: 1 }
-		}
+		this.items = {}
+
+		this.addItem({ name: 'pickaxe', quantity: 1 });
 	}
 
 	get selectedItem() {
@@ -30,9 +34,9 @@ export default class Inventory {
 		} else {
 			for (let i = 0; i < this.maxColumns * this.maxRows; i++) {
 				let existingItem = this.items[i];
-
+				
 				if (!existingItem) {
-					this.items[i] = item;
+					this.items[i] = { ...item, frame: items[item.name].frame };
 					break;
 				}
 			}
@@ -71,20 +75,20 @@ export default class Inventory {
 		this.broadcast();
 	}
 
-	dropItem(item, coordinates) {
-		console.log('dropItem', { item, coordinates });
-		// to drop a new item in the pointer coordinates
-		// new DropItem({
-		// 	name: item.name,
-		// 	frame: item.frame,
-		// 	scene: this.mainScene,
-		// 	x: coordinates.x,
-		// 	y: coordinates.y,
-		// });
+	dropItem(item, { x, y}) {
+		for (let i = 0; i < item.quantity; i++) {
+			new DropItem({
+				name: item.name,
+				frame: item.frame,
+				scene: this.mainScene,
+				x: x ,
+				y: y
+			});
 
-		// removeitem(item.name)
-		// this.broadcast();
+			this.removeItem(item.name)
+		}
 
+		this.broadcast();
 	}
 
 	getItemFrame(item) {

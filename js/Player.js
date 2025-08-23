@@ -17,9 +17,9 @@ export default class Player extends MatterEntity {
 			health: 5,
 			drops: []
 		});
-		
+
 		this.touching = [];
-		this.inventory = new Inventory();
+		this.inventory = new Inventory({ scene: this.scene });
 
 		this.spriteWeapon = new Phaser.GameObjects.Sprite(this.scene, 0, 0, 'icons', 162);
 		this.spriteWeapon.setScale(0.8);
@@ -161,8 +161,6 @@ export default class Player extends MatterEntity {
 	}
 
 	onDeath() {
-		console.log('Player is DEAD');
-		
 		this.anims.stop();
 		this.setTexture('icons', 0);
 		this.setOrigin(0.5);
