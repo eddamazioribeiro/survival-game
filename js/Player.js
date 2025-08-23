@@ -161,10 +161,11 @@ export default class Player extends MatterEntity {
 	}
 
 	onDeath() {
+		console.log('Player is DEAD');
+		
 		this.anims.stop();
 		this.setTexture('icons', 0);
 		this.setOrigin(0.5);
 		this.spriteWeapon.destroy();
-		if (this.soundGameOver) this.soundGameOver.play();
 	}
 }
