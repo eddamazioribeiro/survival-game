@@ -1,4 +1,5 @@
 import MatterEntity from './MatterEntity.js';
+import Inventory from './Inventory.js';
 
 export default class Player extends MatterEntity {
 		static preload(scene) {
@@ -18,6 +19,7 @@ export default class Player extends MatterEntity {
 		});
 		
 		this.touching = [];
+		this.inventory = new Inventory();
 
 		this.spriteWeapon = new Phaser.GameObjects.Sprite(this.scene, 0, 0, 'icons', 162);
 		this.spriteWeapon.setScale(0.8);
@@ -83,13 +85,24 @@ export default class Player extends MatterEntity {
 			this.anims.play('peasant_idle', true);
 		}
 
-		this.spriteWeapon.setPosition(this.x, this.y);
-		this.weaponRotate();
+		if (this.inventory.selectedItem) {
+			this.spriteWeapon.setTexture('icons', this.inventory.getItemFrame(this.inventory.selectedItem));
+			this.spriteWeapon.setVisible(true);
+		} else {
+			this.spriteWeapon.setVisible(false);
+		}
+		
+		if (!this.inventory.dragging) {
+			this.spriteWeapon.setPosition(this.x, this.y);
+			this.weaponRotate();
+		}
 	}
 
 	weaponRotate() {
 		let pointer = this.scene.input.activePointer;
 
+		if (!this.inventory.selectedItem) return;
+		
 		if (pointer.isDown) this.weaponRotation += 3;
 		else this.weaponRotation = 0;
 
@@ -126,7 +139,9 @@ export default class Player extends MatterEntity {
 			objectA: [playerCollider],
 			callback: other => {
 				if (other.gameObjectB && other.gameObjectB.pickup) {
-					other.gameObjectB.pickup();
+					if (other.gameObjectB.pickup()) {
+						this.inventory.addItem({ name: other.gameObjectB.name, quantity: 1 });
+					}
 				}
 			},
 			context: this.scene,
@@ -145,11 +160,12 @@ export default class Player extends MatterEntity {
 		} else this.soundWeapon.play();
 	}
 
-	onDeath = () => {
+	onDeath() {
+		console.log('Player is DEAD');
+		
 		this.anims.stop();
 		this.setTexture('icons', 0);
 		this.setOrigin(0.5);
 		this.spriteWeapon.destroy();
-		if (this.soundGameOver) this.soundGameOver.play();
 	}
 }
